@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08T18:09:44.197Z",
+  "passed": true,
+  "startupArguments": true,
+  "secondProcessCaseInsensitiveDedup": true,
+  "duplicateFragments": true,
+  "deniedSchemes": [
+    "Error: Error invoking remote method 'localmd:follow': Error: Unsupported link scheme.",
+    "Error: Error invoking remote method 'localmd:follow': Error: Unsupported link scheme.",
+    "Error: Error invoking remote method 'localmd:follow': Error: Unsupported link scheme.",
+    "Error: Error invoking remote method 'localmd:follow': Error: Unsupported link scheme.",
+    "Error: Error invoking remote method 'localmd:follow': Error: Unsupported link scheme.",
+    "Error: Error invoking remote method 'localmd:follow': Error: Malformed percent encoding.",
+    "Error: Error invoking remote method 'localmd:image': Error: Image is outside authorized folders. Open its folder first."
+  ],
+  "renameAndRapidWrites": true,
+  "reloadPassageShift": 0.265625,
+  "transientAndPersistentDeletion": true,
+  "temporaryEmptyRetainsContent": true,
+  "immediateClosePreferences": true,
+  "sourceHashes": {
+    "first": "9c0d236b91ef7bf58c6a7d3f515b34b7af4f83328e4c661ebef6223fc897b92b",
+    "second": "ccc1907fe8ac17c2ae247304b44fa357b5f6cc6d9928c0a5ed1438f67eb89d0a",
+    "outside": "6f75a7c891013f1ab0beb799b2aa781e8eca5863a612716b1aa7f8956eb314df"
+  },
+  "limitation": "Outside-root question response controlled; interactive Windows prompt UI UNVERIFIED because the computer-use native pipe failed."
+}

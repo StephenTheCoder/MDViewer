@@ -1,0 +1,45 @@
+{
+  "viewport": {
+    "width": 1200,
+    "height": 851,
+    "scale": 1
+  },
+  "strip": {
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 43
+  },
+  "sidebar": {
+    "x": 0,
+    "y": 43,
+    "width": 250,
+    "height": 785
+  },
+  "canvas": {
+    "x": 254,
+    "y": 79,
+    "width": 931,
+    "height": 22774.234375
+  },
+  "heading": {
+    "x": 300,
+    "y": 116,
+    "width": 839,
+    "height": 52.5
+  },
+  "headingSize": "42px",
+  "bodySize": "20px",
+  "diagram": {
+    "x": 300,
+    "y": 345.5,
+    "width": 839,
+    "height": 227.671875
+  },
+  "table": {
+    "x": 300,
+    "y": 670.171875,
+    "width": 839,
+    "height": 192.796875
+  }
+}

@@ -1,0 +1,8 @@
+import { chromium } from 'playwright'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { spawn, execFile } from 'node:child_process'
+const file=path.resolve('.test-data/portable.md');await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,'# Portable LocalMD\n\nRunning the self-contained executable.\n\n'+'```mermaid\nflowchart LR\n A[Portable] --> B[Local]\n```\n')
+const port=39308,child=spawn(path.resolve('release/LocalMD-1.0.2-portable-x64.exe'),['--remote-debugging-port='+port,file],{windowsHide:true,stdio:'ignore',env:{...process.env,LOCALMD_USER_DATA:path.resolve('.test-data/portable-profile-'+Date.now())}})
+let browser,success=false
+try{let available=false;for(let i=0;i<225;i++){try{const response=await fetch('http://127.0.0.1:'+port+'/json/version');if(response.ok){available=true;break;}}catch{}await new Promise(r=>setTimeout(r,200));}if(!available)throw Error('Portable runtime did not expose the requested test-only debug port');browser=await chromium.connectOverCDP('http://127.0.0.1:'+port);const context=browser.contexts()[0];let page=context.pages().find(p=>p.url().startsWith('localmd://app'))||context.pages()[0];if(!page)page=await context.waitForEvent('page');await page.getByRole('heading',{name:'Portable LocalMD'}).waitFor({timeout:30000});await page.locator('.diagram-svg svg').waitFor({timeout:30000});await page.screenshot({path:'.test-data/portable-launch.png'});console.log('PASS: portable executable launched its bundled Electron runtime, opened local Markdown and rendered Mermaid.');await page.close();success=true;}finally{await browser?.close();if(!success&&child.pid)await new Promise(r=>execFile('taskkill.exe',['/PID',String(child.pid),'/T','/F'],{windowsHide:true},()=>r()));}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-08T18:09:45.002Z",
+  "bounds": {
+    "window": {
+      "x": 0,
+      "y": 0,
+      "width": 1708,
+      "height": 1020
+    },
+    "displays": [
+      {
+        "x": 0,
+        "y": 0,
+        "width": 1707,
+        "height": 1019
+      }
+    ]
+  },
+  "corruptPrimaryPreserved": true,
+  "validBackupRecovered": true,
+  "missingFileRecovered": true,
+  "limitation": "Disconnected monitor bounds injected; no physical monitor unplugged."
+}

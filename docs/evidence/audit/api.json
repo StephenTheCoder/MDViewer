@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-08T18:09:46.255Z",
+  "results": {
+    "missing-token": 401,
+    "wrong-token": 401,
+    "origin": 403,
+    "host": 403,
+    "outside-root": 400,
+    "junction-escape": 400,
+    "unc": 400,
+    "extension": 400,
+    "relative": 400,
+    "oversized": 413,
+    "open": 200,
+    "show": 200,
+    "rotated-old-token": 401
+  },
+  "disabledHasNoListener": true,
+  "collisionReported": true,
+  "tokenOSProtected": true,
+  "shutdownListenerRemoved": true,
+  "deniedFilesUnchanged": true,
+  "approvedRoots": "Synthetic session seeds approved root; API cannot add roots.",
+  "ephemeralNoAutomaticDiskWrite": true
+}

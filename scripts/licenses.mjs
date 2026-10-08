@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
+const records=[]
+async function visit(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){if(!entry.isDirectory()||entry.name.startsWith('.'))continue;const location=path.join(dir,entry.name);if(entry.name.startsWith('@')){await visit(location);continue;}try{const pkg=JSON.parse(await fs.readFile(path.join(location,'package.json'),'utf8'));const files=(await fs.readdir(location)).filter(n=>/^(licen[sc]e|notice|copying)/i.test(n));const notices=[];for(const file of files){try{notices.push({file,text:await fs.readFile(path.join(location,file),'utf8')})}catch{}}records.push({name:pkg.name,version:pkg.version,license:pkg.license||'See upstream notice',repository:pkg.repository,notices});}catch{}try{await visit(path.join(location,'node_modules'))}catch{}}}
+await visit('node_modules');await fs.mkdir('docs',{recursive:true});await fs.writeFile('docs/dependency-notices.json',JSON.stringify(records,null,2));console.log(`Recorded ${records.length} package licenses and available notices.`)

@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-08T18:09:54.191Z",
+  "hardware": {
+    "cpu": "Intel(R) Core(TM) Ultra 9 275HX",
+    "logicalCPUs": 24,
+    "totalMemoryBytes": 33752997888,
+    "platform": "win32",
+    "release": "10.0.26200"
+  },
+  "fixture": {
+    "bytes": 26214400,
+    "repeatedUnitBytes": 6110,
+    "composition": "Structural headings, paragraphs, emphasis and local fragment links, approximately 25 MiB."
+  },
+  "openedMs": 2254,
+  "appearanceMs": 391,
+  "findMs": 60,
+  "closeMs": 34,
+  "cancellationMs": 10,
+  "before": [
+    {
+      "type": "Browser",
+      "pid": 43256,
+      "memory": {
+        "workingSetSize": 126048,
+        "peakWorkingSetSize": 126048,
+        "privateBytes": 94696
+      },
+      "cpu": 0
+    },
+    {
+      "type": "GPU",
+      "pid": 57844,
+      "memory": {
+        "workingSetSize": 113596,
+        "peakWorkingSetSize": 113596,
+        "privateBytes": 72564
+      },
+      "cpu": 0
+    },
+    {
+      "type": "Utility",
+      "pid": 55256,
+      "memory": {
+        "workingSetSize": 46748,
+        "peakWorkingSetSize": 46748,
+        "privateBytes": 12196
+      },
+      "cpu": 0
+    },
+    {
+      "type": "Tab",
+      "pid": 53076,
+      "memory": {
+        "workingSetSize": 92936,
+        "peakWorkingSetSize": 93204,
+        "privateBytes": 42648
+      },
+      "cpu": 0
+    }
+  ],
+  "after": [
+    {
+      "type": "Browser",
+      "pid": 43256,
+      "memory": {
+        "workingSetSize": 176712,
+        "peakWorkingSetSize": 202584,
+        "privateBytes": 157056
+      },
+      "cpu": 0.26585637031062587
+    },
+    {
+      "type": "GPU",
+      "pid": 57844,
+      "memory": {
+        "workingSetSize": 184480,
+        "peakWorkingSetSize": 184480,
+        "privateBytes": 141960
+      },
+      "cpu": 0.36820828117202997
+    },
+    {
+      "type": "Utility",
+      "pid": 55256,
+      "memory": {
+        "workingSetSize": 46752,
+        "peakWorkingSetSize": 46752,
+        "privateBytes": 12200
+      },
+      "cpu": 0.0001733378888005726
+    },
+    {
+      "type": "Tab",
+      "pid": 53076,
+      "memory": {
+        "workingSetSize": 693172,
+        "peakWorkingSetSize": 693172,
+        "privateBytes": 666904
+      },
+      "cpu": 4.758875730040159
+    }
+  ],
+  "afterClose": [
+    {
+      "type": "Browser",
+      "pid": 43256,
+      "memory": {
+        "workingSetSize": 232832,
+        "peakWorkingSetSize": 254276,
+        "privateBytes": 223476
+      },
+      "cpu": 0.09507766455803275
+    },
+    {
+      "type": "GPU",
+      "pid": 57844,
+      "memory": {
+        "workingSetSize": 184656,
+        "peakWorkingSetSize": 184776,
+        "privateBytes": 142152
+      },
+      "cpu": 0.015585529833737843
+    },
+    {
+      "type": "Utility",
+      "pid": 55256,
+      "memory": {
+        "workingSetSize": 46888,
+        "peakWorkingSetSize": 46888,
+        "privateBytes": 12328
+      },
+      "cpu": 0.0005797945183154894
+    },
+    {
+      "type": "Tab",
+      "pid": 53076,
+      "memory": {
+        "workingSetSize": 752136,
+        "peakWorkingSetSize": 888180,
+        "privateBytes": 723984
+      },
+      "cpu": 1.7934373001226254
+    }
+  ],
+  "limitation": "One run on this laptop; process working-set KiB from Electron. Closing terminates pending parser work; file reopen history retains only metadata and anchors. Garbage collection timing is controlled by Chromium; measurements are not speed guarantees."
+}

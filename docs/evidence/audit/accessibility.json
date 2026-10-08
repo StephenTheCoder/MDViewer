@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-08T18:09:57.589Z",
+  "keyboardDialogTrap": true,
+  "escapeFocusReturned": true,
+  "colors": {
+    "light": [
+      {
+        "selector": ".document p",
+        "foreground": "rgb(48, 56, 68)",
+        "background": "rgb(247, 248, 250)",
+        "contrast": 11.134797628644078
+      },
+      {
+        "selector": ".document a",
+        "foreground": "rgb(40, 104, 206)",
+        "background": "rgb(247, 248, 250)",
+        "contrast": 4.9884493258874825
+      },
+      {
+        "selector": ".document-bar",
+        "foreground": "rgb(93, 104, 123)",
+        "background": "rgb(247, 248, 250)",
+        "contrast": 5.295953780515291
+      },
+      {
+        "selector": ".hljs-string",
+        "foreground": "rgb(36, 114, 71)",
+        "background": "rgb(255, 255, 255)",
+        "contrast": 5.877536396759085
+      },
+      {
+        "selector": ".hljs-number",
+        "foreground": "rgb(153, 81, 22)",
+        "background": "rgb(255, 255, 255)",
+        "contrast": 5.927149851563884
+      },
+      {
+        "selector": ".hljs-comment",
+        "foreground": "rgb(93, 104, 123)",
+        "background": "rgb(255, 255, 255)",
+        "contrast": 5.627659401051541
+      }
+    ],
+    "dark": [
+      {
+        "selector": ".document p",
+        "foreground": "rgb(219, 226, 237)",
+        "background": "rgb(25, 31, 41)",
+        "contrast": 12.694263077374744
+      },
+      {
+        "selector": ".document a",
+        "foreground": "rgb(123, 166, 255)",
+        "background": "rgb(25, 31, 41)",
+        "contrast": 6.885957150855801
+      },
+      {
+        "selector": ".document-bar",
+        "foreground": "rgb(160, 171, 186)",
+        "background": "rgb(25, 31, 41)",
+        "contrast": 7.1130317029203685
+      },
+      {
+        "selector": ".hljs-string",
+        "foreground": "rgb(141, 205, 167)",
+        "background": "rgb(34, 43, 57)",
+        "contrast": 7.756824745944897
+      },
+      {
+        "selector": ".hljs-number",
+        "foreground": "rgb(237, 182, 126)",
+        "background": "rgb(34, 43, 57)",
+        "contrast": 7.872452646883051
+      },
+      {
+        "selector": ".hljs-comment",
+        "foreground": "rgb(160, 171, 186)",
+        "background": "rgb(34, 43, 57)",
+        "contrast": 6.131072251157733
+      }
+    ]
+  },
+  "limitation": "Sampled body/link/path/highlight text; not a full screen-reader or WCAG certification."
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-08T17:44:04.802Z",
+  "node": "v24.21.0",
+  "platform": "win32",
+  "measurements": [
+    {
+      "bytes": 1044808,
+      "parseMs": 145,
+      "sections": 244,
+      "headings": 244
+    },
+    {
+      "bytes": 5241168,
+      "parseMs": 565,
+      "sections": 1224,
+      "headings": 1224
+    },
+    {
+      "bytes": 26210122,
+      "parseMs": 3517,
+      "sections": 6121,
+      "headings": 6121
+    }
+  ],
+  "scope": "Structural parsing in Node test runner, not end-to-end UI latency."
+}

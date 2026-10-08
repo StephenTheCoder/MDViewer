@@ -1,0 +1,19 @@
+{
+  "root": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328",
+  "folder": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved",
+  "profile": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\profile",
+  "file": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\Offline audit.md",
+  "other": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\Second Unicode 雪.markdown",
+  "outside": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\outside.md",
+  "debugger": "http://127.0.0.1:39318",
+  "destinations": {
+    "pdf": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.pdf",
+    "svg": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.svg",
+    "png": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.png",
+    "csv": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.csv",
+    "md": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.md"
+  },
+  "done": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\audit-done",
+  "artifact": "C:\\Users\\steph\\documents\\projects\\MDView\\release\\LocalMD-1.0.2-portable-x64.exe",
+  "artifactHash": "c7a2605a1027b962f2c23296661126274918f5671eadee910aa64145166afe6a"
+}

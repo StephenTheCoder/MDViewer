@@ -1,0 +1,83 @@
+{
+  "name": "localmd",
+  "version": "1.0.2",
+  "description": "Private, offline Markdown reading for Windows",
+  "author": "LocalMD contributors",
+  "license": "MIT",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "start": "electron out/main/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "package:win": "npm run build && electron-builder --win portable nsis --x64 && node scripts/check-package.mjs",
+    "licenses": "node scripts/licenses.mjs"
+  },
+  "build": {
+    "appId": "localmd.reader",
+    "productName": "LocalMD",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json",
+      "LICENSE",
+      "docs/**/*",
+      "!docs/evidence/**/*",
+      "!docs/verification.json",
+      "!docs/acceptance-results.md"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "build/icon.ico",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "include": "build/installer.nsh",
+      "artifactName": "LocalMD-1.0.2-setup-x64.exe"
+    },
+    "portable": {
+      "artifactName": "LocalMD-1.0.2-portable-x64.exe"
+    }
+  },
+  "dependencies": {
+    "chokidar": "5.0.0",
+    "dompurify": "3.4.16",
+    "highlight.js": "11.12.0",
+    "markdown-it": "15.0.2",
+    "markdown-it-anchor": "10.0.0",
+    "markdown-it-footnote": "4.0.0",
+    "markdown-it-task-lists": "2.1.1",
+    "mermaid": "12.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "@types/markdown-it": "14.2.0",
+    "@types/markdown-it-footnote": "3.0.4",
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3",
+    "electron-vite": "5.0.0",
+    "pdfjs-dist": "6.4.299",
+    "typescript": "7.0.2",
+    "vite": "7.3.7",
+    "vitest": "5.0.3"
+  },
+  "overrides": {
+    "katex": "0.18.2"
+  }
+}

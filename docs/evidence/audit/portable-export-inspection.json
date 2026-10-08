@@ -1,0 +1,181 @@
+{
+  "independentCSVRows": [
+    [
+      "Name",
+      "Count",
+      "Notes"
+    ],
+    [
+      "ten",
+      "10",
+      "a|b\nline2"
+    ],
+    [
+      "two",
+      "2",
+      "雪, \"quoted\""
+    ],
+    [
+      "hundred",
+      "100",
+      "'=SUM(A1)"
+    ],
+    [
+      "tie",
+      "2",
+      ""
+    ],
+    [
+      "blank",
+      "",
+      ""
+    ]
+  ],
+  "markdownEscaping": true,
+  "images": {
+    "svg": {
+      "width": 392,
+      "height": 83,
+      "viewer": "Microsoft Edge standalone file viewer"
+    },
+    "png": {
+      "width": 784,
+      "height": 168,
+      "viewer": "Microsoft Edge standalone file viewer"
+    }
+  },
+  "pages": [
+    {
+      "number": 1,
+      "selectableCharacters": 872
+    },
+    {
+      "number": 2,
+      "selectableCharacters": 4107
+    },
+    {
+      "number": 3,
+      "selectableCharacters": 4107
+    },
+    {
+      "number": 4,
+      "selectableCharacters": 4107
+    },
+    {
+      "number": 5,
+      "selectableCharacters": 4107
+    },
+    {
+      "number": 6,
+      "selectableCharacters": 4107
+    },
+    {
+      "number": 7,
+      "selectableCharacters": 4005
+    },
+    {
+      "number": 8,
+      "selectableCharacters": 3922
+    },
+    {
+      "number": 9,
+      "selectableCharacters": 4107
+    },
+    {
+      "number": 10,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 11,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 12,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 13,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 14,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 15,
+      "selectableCharacters": 3803
+    },
+    {
+      "number": 16,
+      "selectableCharacters": 3925
+    },
+    {
+      "number": 17,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 18,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 19,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 20,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 21,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 22,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 23,
+      "selectableCharacters": 3803
+    },
+    {
+      "number": 24,
+      "selectableCharacters": 3925
+    },
+    {
+      "number": 25,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 26,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 27,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 28,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 29,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 30,
+      "selectableCharacters": 4109
+    },
+    {
+      "number": 31,
+      "selectableCharacters": 3803
+    },
+    {
+      "number": 32,
+      "selectableCharacters": 3646
+    },
+    {
+      "number": 33,
+      "selectableCharacters": 119
+    }
+  ]
+}

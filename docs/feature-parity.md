@@ -1,0 +1,28 @@
+# Desktop feature parity
+
+The Pro comparison image is a requirements checklist with ten rows; PDF is the additional desktop product-page requirement. LocalMD is an independent Electron implementation. All capabilities are permanently available. Hosted accounts, AI, publishing, billing and remote PDF services are outside this desktop scope.
+
+PASS below means observed production renderer/native-service behavior. Actual Windows dialog and shell coverage is separated in [acceptance-results.md](acceptance-results.md); controlled dialog responses never establish native dialog UI behavior.
+
+| Capability | Implementation location | Verification | Status / boundary |
+| --- | --- | --- | --- |
+| Tabs | main/index.ts document registry, argumentFiles; App.tsx tab strip/shortcuts | Packaged startup, same-basename Unicode paths, case-insensitive second process, reorder/middle close/reopen, independent anchors | PASS; Windows Open With separately unverified |
+| Folder browsing | main chooseFolder/listFolder/browseFolder/watchers; App Folder and resizer | Lazy nested browsing, filter, selected-file reveal, file additions; startup root race regression | PASS native services; real picker audit recorded separately |
+| Local links | paths.ts canonical/resolveLink/inside; main follow; Reader navigation and fragment index | Percent encoding, Unicode, parent paths, duplicate fragments, unmounted footnotes/backlinks, unsupported schemes, outside-root cancellation | PASS native resolution; access-prompt UI recorded separately |
+| Automatic refresh | watcher.ts stableRead; native generations; App parser jobs; Reader anchors | Replacement/rename, rapid writes, earlier-section change, transient/persistent deletion, empty-file retention | PASS; last content retained with notice for empty/missing files |
+| Session restoration | persistence.ts atomic backup Store; close flush; App saved anchors | Immediate appearance change and close, tabs/folder/outline/bounds restart, corrupt primary/valid backup, missing file, off-monitor bounds | PASS; physical monitor unplug not performed |
+| Appearance | App appearance panel; styles.css; diagram theme | Light/dark/system, fonts/size/height/width/style/emphasis; persisted settings, four Electron device scales | PASS; physical OS display settings unchanged |
+| Table controls | model.ts immutable arrays/sortedRows/exportTable; components.tsx Table | Numeric 2/10/100, ties/blanks, reset, pin/scroll inline/fullscreen, exact column/whole copy, CSV parser and Markdown round trip, saved exports | PASS native clipboard/export services; actual save dialogs recorded separately |
+| Mermaid controls | strict diagram-frame.ts; services queue; components Diagram | Nine required types, malformed isolation, exact source, pan/zoom/fit, repeated full screen/focus, SVG/PNG independent Edge inspection | PASS; source/edge/time/canvas bounds documented |
+| Code copying | originalFence structural source; Code; preload clipboard | Exact CRLF and unknown-language source in native clipboard | PASS; no source writes |
+| Local-agent HTTP opening | agent-api.ts and native preferences/token/root service | Native listener lifecycle, authentication, Host/Origin, roots/junction/UNC/extensions, payload, collision, rotation, shutdown | PASS; mapped network drive hardware unavailable |
+| Local PDF | native printToPDF and dedicated complete print renderer | Multi-page A4/Letter, local images, SVG labels, wide/repeated-header tables, wrapped code, final unmounted table/diagram; PDF.js raster/text checks | PASS export engine; actual destination dialog recorded separately |
+| Standalone Mermaid improvement | openFile .mmd/.mermaid, unchanged source model | Packaged standalone source/rendering | PASS; addition to referenced beta |
+| Portable distribution | electron-builder portable with bundled runtime | Actual portable executable launch; offline/native dialog audit and final smoke | Results and hashes in acceptance report |
+| Per-user installer/Open With | build/installer.nsh HKCU OpenWithProgids; NSIS configuration | Fresh installer generated; registry script reviewed; default associations untouched | UNVERIFIED installation/Open With: no isolated Windows installation environment available |
+
+Implementation and evidence are separate: tests/core.test.ts and tests/release.test.ts check models/security/persistence; tests/desktop operate release/win-unpacked/LocalMD.exe with isolated profiles. The real-dialog portable audit could not finish because the computer-use native pipe failed. scripts/portable-offline-audit.mjs exercises the actual portable executable and native export engine with controlled destination responses; interactive Windows dialog UI remains UNVERIFIED. docs/evidence/audit stores these boundaries. docs/visual-review.md identifies measured visual evidence and original choices.
+
+Release 1.0.2 repairs close-time state loss, stale normal-window bounds, startup folder replacement, empty-file blanking, retained closed-tab models and obsolete parser work. Structural passage anchors survive section regrouping; the complete fragment index lets footnotes and backlinks reach unmounted sections. IPC rejects malformed session fields and validates export data before opening a dialog. Startup options with separate values are excluded from document paths. Packaging ends with an archive/build byte comparison. No source input, default application or real user profile is modified by the audit.
+
+Builds are unsigned. No claim of installer testing, physical monitor/scaling changes, exhaustive security proof, OS-wide network isolation or pixel-exact matching of unsupplied views is made. The final acceptance report is the authoritative result table.

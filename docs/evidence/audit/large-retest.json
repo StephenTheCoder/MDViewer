@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-08",
+  "earlierFullRun": "Large test target closed unexpectedly; worker cleanup timed out. No cause established.",
+  "isolatedRetest": "PASS, 4.4 seconds total",
+  "threeRepeatedRetests": "PASS, 11.4 seconds total; individual tests 3.6, 3.4, 3.4 seconds",
+  "finalFullRun": "18 PASS in 1.2 minutes, including large test 3.3 seconds",
+  "crashEvidence": "No matching LocalMD Application 1000/1001 event or fixture .dmp found in the queried preceding hour; absence does not establish a cause.",
+  "clipboardTestRepairs": "Wait for completed Copied feedback or poll actual native clipboard rather than reading before queued IPC completes.",
+  "limitation": "Earlier closure cause UNVERIFIED, not claimed repaired. Retests used the final packaged executable without increased timeouts."
+}

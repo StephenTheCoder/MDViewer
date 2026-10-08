@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-08T18:09:55.988Z",
+  "security": [
+    {
+      "type": "Tab",
+      "sandboxed": true
+    },
+    {
+      "type": "Tab",
+      "sandboxed": true
+    }
+  ],
+  "validation": {
+    "errors": [
+      "Error: Error invoking remote method 'localmd:openPaths': Error: Invalid file list",
+      "Error: Error invoking remote method 'localmd:setApi': Error: Use port 1024–65535",
+      "Error: Error invoking remote method 'localmd:saveExport': Error: Invalid export",
+      "Error: Error invoking remote method 'localmd:printData': Error: Invalid print sender",
+      "Error: Error invoking remote method 'localmd:printReady': Error: Invalid print sender",
+      "Error: Error invoking remote method 'localmd:listFolder': Error: Folder not authorized",
+      "Error: Error invoking remote method 'localmd:saveSession': Error: Invalid session",
+      "Error: Error invoking remote method 'localmd:saveSession': Error: Invalid string payload",
+      "Error: Error invoking remote method 'localmd:saveExport': Error: Invalid string payload"
+    ],
+    "fetch": "blocked",
+    "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: localmd-asset:; font-src 'self'; connect-src 'self'; frame-src 'self' localmd://diagram; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'"
+  },
+  "probeReceived": [],
+  "scriptExecution": false,
+  "localImageResolved": true,
+  "malformedDiagramIsolated": true,
+  "sourceUnchanged": true,
+  "sourceHash": "172457e62ec362196b7660955de985a308c40390fab165a9e33e24ba48137932",
+  "limitation": "Representative adversarial cases and source review; not a formal security proof."
+}

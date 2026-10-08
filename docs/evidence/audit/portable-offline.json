@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-08T18:11:55.153Z",
+  "artifact": "C:\\Users\\steph\\documents\\projects\\MDView\\release\\LocalMD-1.0.2-portable-x64.exe",
+  "artifactHash": "24d44b6f98f141a68ef816c0a06727628fb75e1bb9a047f05c684262e78f818b",
+  "profile": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\offline-controlled-profile",
+  "fixtureRoot": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328",
+  "files": {
+    "csv": {
+      "path": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.csv",
+      "bytes": 135,
+      "sha256": "b40120ceab954dbd404588e56e212047b210e466149bcaece932d4ffb03dd95e"
+    },
+    "md": {
+      "path": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.md",
+      "bytes": 166,
+      "sha256": "07272ddca48087f820a8cebc1a0167972c11334ee321c9f1483a4f1f5e0c3a6d"
+    },
+    "svg": {
+      "path": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.svg",
+      "bytes": 13858,
+      "sha256": "b3bcd88ca6964f2f67fa4ccc547e852a92839da540e41abb249198fd23b69446"
+    },
+    "png": {
+      "path": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.png",
+      "bytes": 14953,
+      "sha256": "09796670f4e4b8ee6f787ebfe168a46bcbcd5ad6112c7425765b387241b6219b"
+    },
+    "pdf": {
+      "path": "C:\\Users\\steph\\documents\\projects\\MDView\\.test-data\\native-portable-1791475630328\\approved\\native-export.pdf",
+      "bytes": 130768,
+      "sha256": "162dd0ed7f56291a3dafd31c4e0bbb722fa5524619171d1071d3503626e28acb"
+    }
+  },
+  "pdfPages": 33,
+  "completeSelectablePDF": true,
+  "localImageWidth": 300,
+  "unchangedSourceHash": "3b1189a39da6890a948bc3701710dd282177afd76ec89ff52f9fb1e6fd308863",
+  "outboundProbeBlocked": true,
+  "observedHTTPRequests": [],
+  "realNativeDialogs": false,
+  "destinationMethod": "Native Electron dialog responses controlled through test-only main inspector; all native export/print code and portable bundled runtime executed.",
+  "offlineEnforcement": "Production CSP/webRequest; dead proxy and DNS from startup; CDP renderer offline. No OS-wide firewall or physical airgap; remote image permission never granted.",
+  "nativeDialogLimitation": "Computer-use native pipe unavailable after selection; failed recovery and fresh-session retry. Interactive picker/save/prompt behavior UNVERIFIED."
+}
