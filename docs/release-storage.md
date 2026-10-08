@@ -2,6 +2,8 @@
 
 `master` holds ongoing source work. `archive/localmd-1.0.2` preserves commit `9813959` (the released source, README and recorded validation evidence). Keep that branch as a snapshot; create another archive branch for a future release rather than editing this one. Executables are not stored in either branch.
 
+The [published LocalMD 1.0.2 release](https://github.com/StephenTheCoder/MDViewer/releases/tag/v1.0.2) provides the portable executable, installer and SHA-256 checksum file as release assets. Tag `v1.0.2` points to the preserved source snapshot `9813959`. GitHub's asset digests were verified against the local files before publication; the source archive contains no executables.
+
 Local build and release files live under the Git-ignored `.artifacts` directory:
 
 | Location | Contents |

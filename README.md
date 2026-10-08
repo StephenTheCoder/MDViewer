@@ -6,6 +6,10 @@ A private Windows Markdown reader with every reading feature permanently availab
 
 Use the portable reader for the quickest start. It includes its own runtime; Node.js, npm and a development server are unnecessary for normal use.
 
+Download the portable executable or per-user installer from [LocalMD 1.0.2 on GitHub Releases](https://github.com/StephenTheCoder/MDViewer/releases/tag/v1.0.2). Double-click the portable executable, then press **Ctrl+O** to open a document. The release includes SHA-256 checksums and validation limitations.
+
+For the copy already built in this project:
+
 1. Paste this project's path followed by `\.artifacts\releases\1.0.2` into File Explorer's address bar. The `.artifacts` directory is hidden on this Windows checkout.
 2. Double-click **LocalMD-1.0.2-portable-x64.exe**.
 3. Press **Ctrl+O** to select a document, or choose **Open folder** in the Files sidebar. Try `samples/welcome.md`.
@@ -31,7 +35,7 @@ Builds are unsigned. The portable runtime and export engine passed the packaged 
 
 ## Release organization
 
-Source development stays on `master`. Local binaries are ignored by Git: current output lives in `.artifacts/releases/1.0.2/`, and older binaries/checksums live in `.artifacts/archive/1.0.0/` and `.artifacts/archive/1.0.1/`. These files are retained on this machine; cloning the repository does not download executables. Run `npm run package:win` to create them in a fresh checkout.
+Source development stays on `master`. Local binaries are ignored by Git: current output lives in `.artifacts/releases/1.0.2/`, and older binaries/checksums live in `.artifacts/archive/1.0.0/` and `.artifacts/archive/1.0.1/`. These files are retained on this machine; cloning the repository does not download executables. Download the published release above, or run `npm run package:win` to create them in a fresh checkout.
 
 The [archive/localmd-1.0.2 branch](https://github.com/StephenTheCoder/MDViewer/tree/archive/localmd-1.0.2) preserves the released source and validation evidence before this organization change. The retained binaries were moved without rebuilding or changing their hashes. Historical audit JSON and reports retain their original `release/` paths; see [release storage](docs/release-storage.md) for the mapping. Packaging and audit scripts now follow the output configured in `package.json`.
 
