@@ -6,28 +6,34 @@ A private Windows Markdown reader with every reading feature permanently availab
 
 Use the portable reader for the quickest start. It includes its own runtime; Node.js, npm and a development server are unnecessary for normal use.
 
-1. Open this project's `release` folder in File Explorer.
-2. Double-click **LocalMD-1.0.2-portable-x64.exe**. Use this version rather than the older artifacts retained in that folder.
+1. Paste this project's path followed by `\.artifacts\releases\1.0.2` into File Explorer's address bar. The `.artifacts` directory is hidden on this Windows checkout.
+2. Double-click **LocalMD-1.0.2-portable-x64.exe**.
 3. Press **Ctrl+O** to select a document, or choose **Open folder** in the Files sidebar. Try `samples/welcome.md`.
 
 To launch the sample directly from PowerShell, run these commands from the project folder:
 
 ```powershell
 $localmdDocument = (Resolve-Path -LiteralPath '.\samples\welcome.md').Path
-& '.\release\LocalMD-1.0.2-portable-x64.exe' $localmdDocument
+& '.\.artifacts\releases\1.0.2\LocalMD-1.0.2-portable-x64.exe' $localmdDocument
 ```
 
 For another document, pass its quoted absolute path:
 
 ```powershell
-& '.\release\LocalMD-1.0.2-portable-x64.exe' 'C:\Notes\report.md'
+& '.\.artifacts\releases\1.0.2\LocalMD-1.0.2-portable-x64.exe' 'C:\Notes\report.md'
 ```
 
 Replace the example path with your own file. Supported extensions are `.md`, `.markdown`, `.mmd` and `.mermaid`. Starting another instance with a document forwards it to the existing reader. Standalone Mermaid opening is an improvement over the referenced desktop beta.
 
-For a per-user installation, the artifact is `release/LocalMD-1.0.2-setup-x64.exe`. It is designed to register LocalMD under Windows **Open with**, while leaving existing defaults alone; choose a default yourself through Windows. The unpacked alternative is `release/win-unpacked/LocalMD.exe`; keep its adjacent files together.
+For a per-user installation, the artifact is `.artifacts/releases/1.0.2/LocalMD-1.0.2-setup-x64.exe`. It is designed to register LocalMD under Windows **Open with**, while leaving existing defaults alone; choose a default yourself through Windows. The unpacked alternative is `.artifacts/releases/1.0.2/win-unpacked/LocalMD.exe`; keep its adjacent files together.
 
-Builds are unsigned. The portable runtime and export engine passed the packaged checks; interactive Windows chooser/save dialogs, installation and Explorer integration remain unverified. See the [acceptance results](docs/acceptance-results.md) and [artifact hashes](release/checksums-1.0.2.sha256).
+Builds are unsigned. The portable runtime and export engine passed the packaged checks; interactive Windows chooser/save dialogs, installation and Explorer integration remain unverified. See the [acceptance results](docs/acceptance-results.md) and [artifact hashes](.artifacts/releases/1.0.2/checksums-1.0.2.sha256).
+
+## Release organization
+
+Source development stays on `master`. Local binaries are ignored by Git: current output lives in `.artifacts/releases/1.0.2/`, and older binaries/checksums live in `.artifacts/archive/1.0.0/` and `.artifacts/archive/1.0.1/`. These files are retained on this machine; cloning the repository does not download executables. Run `npm run package:win` to create them in a fresh checkout.
+
+The [archive/localmd-1.0.2 branch](https://github.com/StephenTheCoder/MDViewer/tree/archive/localmd-1.0.2) preserves the released source and validation evidence before this organization change. The retained binaries were moved without rebuilding or changing their hashes. Historical audit JSON and reports retain their original `release/` paths; see [release storage](docs/release-storage.md) for the mapping. Packaging and audit scripts now follow the output configured in `package.json`.
 
 ## Reading tools
 

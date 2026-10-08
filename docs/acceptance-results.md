@@ -1,5 +1,7 @@
 # LocalMD 1.0.2 acceptance results
 
+Storage note: the validated binaries have since moved, unchanged, from `release/` to `.artifacts/releases/1.0.2/`. Original paths below and in audit JSON record where validation occurred. The released source/evidence is preserved on `archive/localmd-1.0.2`; see [release storage](release-storage.md) for current paths. This relocation did not repeat the full audit or rebuild the binaries.
+
 Audited on 8 October 2026 on Windows 11 Home x64 (10.0.26200). This replaces earlier completion claims with observed results. The delivered artifacts are from the final source/build state. The application is usable; interactive Windows dialogs, installer and Explorer integration have not been certified. Builds are unsigned.
 
 ## Method and isolation
@@ -89,7 +91,7 @@ These are single local measurements, not speed guarantees. The appearance value 
 | LocalMD-1.0.2-portable-x64.exe | C:\Users\steph\documents\projects\MDView\release\LocalMD-1.0.2-portable-x64.exe | 125229292 | 24d44b6f98f141a68ef816c0a06727628fb75e1bb9a047f05c684262e78f818b |
 | LocalMD-1.0.2-setup-x64.exe | C:\Users\steph\documents\projects\MDView\release\LocalMD-1.0.2-setup-x64.exe | 125438899 | acd99ca4ff04fa0afbe64861386691bb768e588b944bab8e2c22d0c2c50d9c3e |
 
-Unpacked reader: **C:\Users\steph\documents\projects\MDView\release\win-unpacked\LocalMD.exe** (keep adjacent files together). App archive SHA-256: **737ea128a22a21c18e0425c9af128c268e8a782e599a0aeb329cb02b94e055ea**. [Checksums](../release/checksums-1.0.2.sha256) and [verification JSON](verification.json) identify the final files. Older versioned artifacts are retained and are not the recommended launch files.
+Unpacked reader: **C:\Users\steph\documents\projects\MDView\release\win-unpacked\LocalMD.exe** (keep adjacent files together). App archive SHA-256: **737ea128a22a21c18e0425c9af128c268e8a782e599a0aeb329cb02b94e055ea**. [Checksums](../.artifacts/releases/1.0.2/checksums-1.0.2.sha256) and [verification JSON](verification.json) identify the final files. Older versioned artifacts are retained and are not the recommended launch files.
 
 Double-click the portable executable, then open a Markdown file; no separately installed Node.js or development server is required. For command-line opening in PowerShell:
 

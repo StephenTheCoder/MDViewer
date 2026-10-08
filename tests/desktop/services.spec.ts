@@ -1,9 +1,10 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
-const root = path.resolve('.test-data'), executable = process.env.LOCALMD_EXE || path.resolve('release/win-unpacked/LocalMD.exe')
+const root = path.resolve('.test-data'), executable = packagedExecutable
 test('packaged native chooser, nested folders, second launch, API lifecycle and authorization', async () => {
   await fs.mkdir(path.join(root, 'nested'), { recursive: true }); const profile = path.join(root, 'services-' + Date.now()), file = path.join(root, 'native.md'), nested = path.join(root, 'nested', 'child.md'); await fs.writeFile(file, '# Native chooser\n\n[Child](nested/child.md)'); await fs.writeFile(nested, '# Nested child')
   const app = await electron.launch({ executablePath: executable, env: { ...process.env, LOCALMD_USER_DATA: profile } }), page = await app.firstWindow()

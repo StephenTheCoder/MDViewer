@@ -1,18 +1,19 @@
+import { releaseDirectory, unpackedExecutable, appArchive, version } from './release-paths.mjs'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { createHash } from 'node:crypto'
 const hash = bytes => createHash('sha256').update(bytes).digest('hex')
 const read = async file => JSON.parse(await fs.readFile(file, 'utf8'))
-const audit = 'docs/evidence/audit/', version = '1.0.2'
+const audit = 'docs/evidence/audit/'
 const outputs = []
-for (const name of [`LocalMD-${version}-portable-x64.exe`, `LocalMD-${version}-setup-x64.exe`]) { const file = path.resolve('release', name), bytes = await fs.readFile(file); outputs.push({ file, name, bytes: bytes.length, sha256: hash(bytes) }) }
+for (const name of [`LocalMD-${version}-portable-x64.exe`, `LocalMD-${version}-setup-x64.exe`]) { const file = path.join(releaseDirectory, name), bytes = await fs.readFile(file); outputs.push({ file, name, bytes: bytes.length, sha256: hash(bytes) }) }
 const portable = await read(audit + 'portable-offline.json'), provenance = await read(audit + 'package-provenance.json'), performance = await read(audit + 'performance.json'), exports = await read('docs/evidence/export-inspection.json'), workflow = await read(audit + 'native-workflow.json'), structure = await read(audit + 'markdown-structures.json')
 if (portable.artifactHash !== outputs[0].sha256) throw Error('Portable evidence is from an older artifact')
 if ((await read('test-results/.last-run.json')).status !== 'passed') throw Error('Final desktop run did not pass')
 if (!structure.footnoteAndBacklinkNavigation || !provenance.packagedRuntimeFilesMatchBuild || !portable.completeSelectablePDF || exports.diagramErrors || !exports.completeBottomAssets) throw Error('Required evidence failed')
-if (provenance.appAsarSHA256 !== hash(await fs.readFile('release/win-unpacked/resources/app.asar'))) throw Error('Archive changed after verification')
+if (provenance.appAsarSHA256 !== hash(await fs.readFile(appArchive))) throw Error('Archive changed after verification')
 const checksums = outputs.map(o => `${o.sha256}  ${o.name}`).join('\n') + '\n'
-await fs.writeFile('release/checksums.sha256', checksums); await fs.writeFile(`release/checksums-${version}.sha256`, checksums)
+await fs.writeFile(path.join(releaseDirectory, 'checksums.sha256'), checksums); await fs.writeFile(`${releaseDirectory}/checksums-${version}.sha256`, checksums)
 async function filesIn(directory) { const entries = await fs.readdir(directory, { withFileTypes: true }); return (await Promise.all(entries.map(entry => entry.isDirectory() ? filesIn(path.join(directory, entry.name)) : path.join(directory, entry.name)))).flat() }
 const source = {}
 for (const file of [...await filesIn('src'), 'package.json', 'package-lock.json', 'electron.vite.config.ts', 'build/installer.nsh'].sort()) source[file.replaceAll('\\', '/')] = hash(await fs.readFile(file))
@@ -26,7 +27,7 @@ Audited on 8 October 2026 on Windows 11 Home x64 (10.0.26200). This replaces ear
 
 ## Method and isolation
 
-All desktop tests launch **release/win-unpacked/LocalMD.exe**, with unique profiles and synthetic fixtures under this workspace's **.test-data/**. The final portable audit launches the actual self-contained executable, with profile **${portable.profile}** and fixture root **${portable.fixtureRoot}**. No real documents, real LocalMD preferences, default applications, registry associations or unrelated applications were changed. API roots/junctions and corrupt sessions are synthetic. Deliberate external fixture writes are the watcher test stimulus; hashes compare files against their intended final content afterward.
+All desktop tests launch **${unpackedExecutable}**, with unique profiles and synthetic fixtures under this workspace's **.test-data/**. The final portable audit launches the actual self-contained executable, with profile **${portable.profile}** and fixture root **${portable.fixtureRoot}**. No real documents, real LocalMD preferences, default applications, registry associations or unrelated applications were changed. API roots/junctions and corrupt sessions are synthetic. Deliberate external fixture writes are the watcher test stimulus; hashes compare files against their intended final content afterward.
 
 PASS means the named behavior was observed using the stated method. A native service PASS never implies its Windows dialog UI passed. Automated open/save/access-question responses are controlled; native clipboard, filesystem, watchers, HTTP server, persistence, printToPDF and packaged Electron runtime are real. UNVERIFIED identifies a missing observation. Repaired functional defects were retested. An earlier full run also had two test clipboard timing races and one unexplained target-process closure during a large-document test; its cause remains unverified. Isolated/repeated large-document checks and the final full run passed.
 
@@ -110,7 +111,7 @@ These are single local measurements, not speed guarantees. The appearance value 
 | --- | --- | ---: | --- |
 ${outputs.map(o => `| ${o.name} | ${o.file} | ${o.bytes} | ${o.sha256} |`).join('\n')}
 
-Unpacked reader: **${path.resolve('release/win-unpacked/LocalMD.exe')}** (keep adjacent files together). App archive SHA-256: **${provenance.appAsarSHA256}**. [Checksums](../release/checksums-1.0.2.sha256) and [verification JSON](verification.json) identify the final files. Older versioned artifacts are retained and are not the recommended launch files.
+Unpacked reader: **${unpackedExecutable}** (keep adjacent files together). App archive SHA-256: **${provenance.appAsarSHA256}**. [Checksums](../${path.relative(process.cwd(), releaseDirectory).split(path.sep).join('/')}/checksums-${version}.sha256) and [verification JSON](verification.json) identify the final files. Older versioned artifacts are retained and are not the recommended launch files.
 
 Double-click the portable executable, then open a Markdown file; no separately installed Node.js or development server is required. For command-line opening in PowerShell:
 

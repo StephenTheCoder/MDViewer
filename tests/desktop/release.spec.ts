@@ -1,10 +1,11 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron, type ElectronApplication } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { createHash } from 'node:crypto'
 import { exportTable, parseMarkdown, sortedRows } from '../../src/shared/model'
 
-const project = process.cwd(), evidence = path.join(project, 'docs/evidence'), fixture = path.join(project, '.test-data/release-fixture'), exe = path.join(project, 'release/win-unpacked/LocalMD.exe')
+const project = process.cwd(), evidence = path.join(project, 'docs/evidence'), fixture = path.join(project, '.test-data/release-fixture'), exe = packagedExecutable
 const reference = '# Release plan: Search indexing v2\n\nThe indexing pipeline moves from nightly batches to a streaming update. This document covers the rollout, the owners, and the checks that gate each stage.\n\n## Rollout\n\n```mermaid\nflowchart LR\n A[Docs change] --> B{Build passes?}\n B -- yes --> C[Index shard]\n C --> D[Canary 5%]\n D --> E[Full rollout]\n B -- no --> F[Notify owner]\n```\n\n## Stages\n\n| Stage | Owner | Traffic | Exit check |\n| :--- | :--- | ---: | :--- |\n| Canary | Search infra | 5% | p95 latency < 120 ms |\n| Early regions | Platform | 25% | Error rate < 0.1% |\n'
 const wide = '| Name | Count | Notes | Region | Owner | Status | Check A | Check B | Check C | Check D |\n| :--- | ---: | :---: | --- | --- | --- | --- | --- | --- | --- |\n| 漢字 | 10 | a\\|b<br>c | North America | Search infrastructure | Complete | Wide value alpha | Wide value beta | Wide value gamma | Wide value delta |\n| blank | | | Europe | Platform engineering | Pending | A | B | C | D |\n| Café | 2 | "quoted",value | 日本 | Team | Ready | A | B | C | D |\n| formula | 2 | =SUM(A1) | City | Team | Ready | A | B | C | D |\n| hundred | 100 | last numerically | City | Team | Ready | A | B | C | D |\n'
 const largeDiagram = 'flowchart TD\n' + Array.from({ length: 22 }, (_, i) => ` N${i}[Stage ${i}: validate local document] --> N${i + 1}[Stage ${i + 1}: validate local document]`).join('\n')

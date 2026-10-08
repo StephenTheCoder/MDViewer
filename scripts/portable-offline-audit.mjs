@@ -1,3 +1,4 @@
+import { portableExecutable } from './release-paths.mjs'
 import { chromium } from 'playwright'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -10,7 +11,7 @@ import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
 const ready = JSON.parse(await fs.readFile('docs/evidence/audit/portable-ready.json', 'utf8'))
 try { const old = await chromium.connectOverCDP(ready.debugger); for (const p of old.contexts()[0].pages()) if (p.url().startsWith('localmd://app')) await p.close(); await old.close() } catch {}
 const profile = path.join(ready.root, 'offline-controlled-profile'), port = 39328, inspectorPort = 39329
-const child = spawn(ready.artifact, ['--inspect=' + inspectorPort, '--remote-debugging-port=' + port, '--proxy-server=http://127.0.0.1:1', '--host-resolver-rules=MAP * ~NOTFOUND', ready.file], { windowsHide: true, stdio: 'ignore', env: { ...process.env, LOCALMD_USER_DATA: profile } })
+const child = spawn(portableExecutable, ['--inspect=' + inspectorPort, '--remote-debugging-port=' + port, '--proxy-server=http://127.0.0.1:1', '--host-resolver-rules=MAP * ~NOTFOUND', ready.file], { windowsHide: true, stdio: 'ignore', env: { ...process.env, LOCALMD_USER_DATA: profile } })
 let browser, socket, success = false, id = 0
 const pending = new Map()
 async function evaluate(expression) {
@@ -63,7 +64,7 @@ try {
   const pages = pdf.numPages; await task.destroy()
   if (createHash('sha256').update(await fs.readFile(ready.file)).digest('hex') !== originalHash) throw Error('Markdown source changed')
   await page.screenshot({ path: 'docs/evidence/audit/portable-offline.png' })
-  await fs.writeFile('docs/evidence/audit/portable-offline.json', JSON.stringify({ date: new Date().toISOString(), artifact: ready.artifact, artifactHash: createHash('sha256').update(await fs.readFile(ready.artifact)).digest('hex'), profile, fixtureRoot: ready.root, files, pdfPages: pages, completeSelectablePDF: true, localImageWidth: imageWidth, unchangedSourceHash: originalHash, outboundProbeBlocked: blocked, observedHTTPRequests: requests, realNativeDialogs: false, destinationMethod: 'Native Electron dialog responses controlled through test-only main inspector; all native export/print code and portable bundled runtime executed.', offlineEnforcement: 'Production CSP/webRequest; dead proxy and DNS from startup; CDP renderer offline. No OS-wide firewall or physical airgap; remote image permission never granted.', nativeDialogLimitation: 'Computer-use native pipe unavailable after selection; failed recovery and fresh-session retry. Interactive picker/save/prompt behavior UNVERIFIED.' }, null, 2))
+  await fs.writeFile('docs/evidence/audit/portable-offline.json', JSON.stringify({ date: new Date().toISOString(), artifact: portableExecutable, artifactHash: createHash('sha256').update(await fs.readFile(portableExecutable)).digest('hex'), profile, fixtureRoot: ready.root, files, pdfPages: pages, completeSelectablePDF: true, localImageWidth: imageWidth, unchangedSourceHash: originalHash, outboundProbeBlocked: blocked, observedHTTPRequests: requests, realNativeDialogs: false, destinationMethod: 'Native Electron dialog responses controlled through test-only main inspector; all native export/print code and portable bundled runtime executed.', offlineEnforcement: 'Production CSP/webRequest; dead proxy and DNS from startup; CDP renderer offline. No OS-wide firewall or physical airgap; remote image permission never granted.', nativeDialogLimitation: 'Computer-use native pipe unavailable after selection; failed recovery and fresh-session retry. Interactive picker/save/prompt behavior UNVERIFIED.' }, null, 2))
   await page.close(); success = true
   console.log('PASS: final portable offline reading and five actual native exports; destination responses controlled, dialog UI UNVERIFIED. PDF pages: ' + pages)
 } finally {

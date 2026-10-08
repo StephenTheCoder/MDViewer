@@ -19,7 +19,7 @@
     "appId": "localmd.reader",
     "productName": "LocalMD",
     "directories": {
-      "output": "release"
+      "output": ".artifacts/releases/1.0.2"
     },
     "files": [
       "out/**/*",

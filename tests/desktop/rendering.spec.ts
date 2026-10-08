@@ -1,3 +1,4 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -8,7 +9,7 @@ test('packaged structural Markdown, callouts and unmounted footnote navigation',
   await fs.mkdir(root, { recursive: true })
   const source = '# Structural reader\n\nText with **strong**, *emphasis*, `inline code` and a note[^1].\n\n- Outer\n  - Inner\n\n- [x] Complete\n- [ ] Waiting\n\n---\n\n' + ['NOTE', 'TIP', 'IMPORTANT', 'WARNING', 'CAUTION'].map(kind => `> [!${kind}]\n> ${kind} content.\n\n`).join('') + Array.from({ length: 45 }, (_, i) => `## Long section ${i}\n\n` + 'Footnotes must be navigable before their section mounts. '.repeat(60)).join('\n\n') + '\n\n[^1]: FINAL-FOOTNOTE-TEXT\n'
   await fs.writeFile(file, source); const hash = createHash('sha256').update(source).digest('hex')
-  const app = await electron.launch({ executablePath: process.env.LOCALMD_EXE || path.resolve('release/win-unpacked/LocalMD.exe'), args: [file], env: { ...process.env, LOCALMD_USER_DATA: path.join(root, 'profile') } }), page = await app.firstWindow()
+  const app = await electron.launch({ executablePath: packagedExecutable, args: [file], env: { ...process.env, LOCALMD_USER_DATA: path.join(root, 'profile') } }), page = await app.firstWindow()
   try {
     await expect(page.getByRole('heading', { name: 'Structural reader', exact: true })).toBeVisible()
     await expect(page.locator('article strong').filter({ hasText: 'strong' })).toBeVisible(); await expect(page.locator('article em')).toHaveText('emphasis'); await expect(page.locator('article ul ul li')).toHaveText('Inner')

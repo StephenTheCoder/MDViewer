@@ -1,8 +1,9 @@
+import { appArchive } from './release-paths.mjs'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { extractFile, listPackage } from '@electron/asar'
 import { createHash } from 'node:crypto'
-const archive = path.resolve('release/win-unpacked/resources/app.asar')
+const archive = appArchive
 const paths = listPackage(archive).map(p => p.replaceAll('\\', '/')).filter(p => p.startsWith('/out/'))
 let files = 0
 for (const relative of paths) {
@@ -13,5 +14,5 @@ for (const relative of paths) {
 }
 const result = { date: new Date().toISOString(), packagedRuntimeFilesMatchBuild: files, appAsarSHA256: createHash('sha256').update(await fs.readFile(archive)).digest('hex') }
 if (!files) throw Error('No runtime files were compared')
-await fs.writeFile('docs/evidence/audit/package-provenance.json', JSON.stringify(result, null, 2))
+if (!process.argv.includes('--check-only')) await fs.writeFile('docs/evidence/audit/package-provenance.json', JSON.stringify(result, null, 2))
 console.log(JSON.stringify(result))

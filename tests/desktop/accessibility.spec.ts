@@ -1,3 +1,4 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -5,7 +6,7 @@ import path from 'node:path'
 test('native keyboard focus traps and measured light/dark reading contrast', async () => {
   const root = path.resolve('.test-data/accessibility-' + Date.now()), file = path.join(root, 'focus.md'); await fs.mkdir(root, { recursive: true })
   await fs.writeFile(file, '# Focus and contrast\n\nReadable body with a [local fragment](#focus-and-contrast).\n\n```python\nprint("string") # comment\nvalue = 42\n```\n')
-  const app = await electron.launch({ executablePath: process.env.LOCALMD_EXE || path.resolve('release/win-unpacked/LocalMD.exe'), args: [file], env: { ...process.env, LOCALMD_USER_DATA: path.join(root, 'profile') } }), page = await app.firstWindow(), results: Record<string, unknown> = {}
+  const app = await electron.launch({ executablePath: packagedExecutable, args: [file], env: { ...process.env, LOCALMD_USER_DATA: path.join(root, 'profile') } }), page = await app.firstWindow(), results: Record<string, unknown> = {}
   try {
     await expect(page.locator('.hljs-string')).toBeVisible()
     for (const theme of ['light', 'dark']) {

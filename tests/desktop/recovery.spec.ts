@@ -1,3 +1,4 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -6,12 +7,12 @@ import { promisify } from 'node:util'
 import { initialSession } from '../../src/shared/types'
 test('a missing restored file has a useful state and can be reopened after recovery', async () => {
   const root = path.resolve('.test-data'), profile = path.join(root, 'recovery-' + Date.now()), file = path.join(profile, 'recovered.md'); await fs.mkdir(profile, { recursive: true }); await fs.writeFile(path.join(profile, 'session-v1.json'), JSON.stringify({ ...initialSession, tabs: [{ path: file }], active: file }))
-  const app = await electron.launch({ executablePath: process.env.LOCALMD_EXE || path.resolve('release/win-unpacked/LocalMD.exe'), env: { ...process.env, LOCALMD_USER_DATA: profile } }), page = await app.firstWindow()
+  const app = await electron.launch({ executablePath: packagedExecutable, env: { ...process.env, LOCALMD_USER_DATA: profile } }), page = await app.firstWindow()
   try { await expect(page.locator('article [role=alert]')).toContainText('ENOENT'); await fs.writeFile(file, '# Recovered document\n\nReadable again.'); await app.evaluate(({ dialog }, selected) => { dialog.showOpenDialog = async () => ({ canceled: false, filePaths: [selected] }) }, file); await page.keyboard.press('Control+o'); await expect(page.getByRole('heading', { name: 'Recovered document' })).toBeVisible(); await expect(page.locator('.tab')).toHaveCount(1); await expect(page.locator('article [role=alert]')).toHaveCount(0) } finally { await app.close() }
 })
 
 test('autosaved tabs, passage and appearance survive forced native process termination', async () => {
-  const root = path.resolve('.test-data/abrupt-' + Date.now()), profile = path.join(root, 'profile'), folder = path.join(root, 'fixtures'), first = path.join(folder, 'first.md'), second = path.join(folder, 'second.md'), executable = process.env.LOCALMD_EXE || path.resolve('release/win-unpacked/LocalMD.exe')
+  const root = path.resolve('.test-data/abrupt-' + Date.now()), profile = path.join(root, 'profile'), folder = path.join(root, 'fixtures'), first = path.join(folder, 'first.md'), second = path.join(folder, 'second.md'), executable = packagedExecutable
   await fs.mkdir(folder, { recursive: true }); await fs.writeFile(first, '# Abrupt first\n\n' + Array.from({ length: 40 }, (_, i) => `## Passage ${i}\n\n` + 'Reading anchor survives interrupted shutdown. '.repeat(40)).join('\n\n')); await fs.writeFile(second, '# Abrupt second')
   const app = await electron.launch({ executablePath: executable, args: [first, second], env: { ...process.env, LOCALMD_USER_DATA: profile } }), page = await app.firstWindow()
   let killed = false

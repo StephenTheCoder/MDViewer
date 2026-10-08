@@ -1,7 +1,8 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
-const project = process.cwd(), root = path.join(project, '.test-data'), executable = process.env.LOCALMD_EXE || path.join(project, 'release/win-unpacked/LocalMD.exe')
+const project = process.cwd(), root = path.join(project, '.test-data'), executable = packagedExecutable
 test('packaged desktop: native open, tabs, reload, links, tools, exports, PDF and restart', async () => {
   await fs.mkdir(root, { recursive: true }); const userData = path.join(root, 'profile-' + Date.now()), main = path.join(root, 'report.md'), other = path.join(root, 'other.md')
   for (const file of ['diagram.svg', 'diagram.png', 'complete.pdf']) await fs.rm(path.join(root, file), { force: true })

@@ -1,3 +1,4 @@
+import { executable as packagedExecutable } from './paths'
 import { test, expect, _electron as electron } from '@playwright/test'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -8,7 +9,7 @@ import { promisify } from 'node:util'
 import { createHash } from 'node:crypto'
 import { initialSession } from '../../src/shared/types'
 
-const executable = process.env.LOCALMD_EXE || path.resolve('release/win-unpacked/LocalMD.exe')
+const executable = packagedExecutable
 const evidence = path.resolve('docs/evidence/audit')
 const digest = async (file: string) => createHash('sha256').update(await fs.readFile(file)).digest('hex')
 async function isolated() {

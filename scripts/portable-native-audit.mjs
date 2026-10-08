@@ -1,3 +1,4 @@
+import { portableExecutable } from './release-paths.mjs'
 import { chromium } from 'playwright'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -14,7 +15,7 @@ const source = '# Portable offline audit\n\n[Outside document](../outside.md)\n\
 await fs.writeFile(file, source); await fs.writeFile(other, '# Native chooser Unicode\n\nOpened through a real Windows chooser.'); await fs.writeFile(outside, '# Outside native audit\n\nSynthetic outside-root content.')
 await fs.writeFile(path.join(folder, 'local.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80"><rect width="300" height="80" fill="#e3eaf7"/><text x="15" y="45" font-size="20" font-family="Segoe UI">Offline local image</text></svg>')
 const hash = createHash('sha256').update(await fs.readFile(file)).digest('hex'), port = 39318
-const artifact = path.resolve('release/LocalMD-1.0.2-portable-x64.exe'), artifactHash = createHash('sha256').update(await fs.readFile(artifact)).digest('hex')
+const artifact = portableExecutable, artifactHash = createHash('sha256').update(await fs.readFile(artifact)).digest('hex')
 const child = spawn(artifact, ['--remote-debugging-port=' + port, '--proxy-server=http://127.0.0.1:1', '--host-resolver-rules=MAP * ~NOTFOUND', file], { windowsHide: true, stdio: 'ignore', env: { ...process.env, LOCALMD_USER_DATA: profile } })
 let browser, success = false
 try {
